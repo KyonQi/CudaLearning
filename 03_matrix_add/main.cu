@@ -25,7 +25,7 @@ __global__ void matrixAdd2D(const float *A, const float *B, float *C,
 }
 
 int main() {
-    const int width = 1024, height = 1024;
+    const int width = 8192, height = 8192;
     const int size = width * height * sizeof(float);
 
     std::vector<float> h_A(width * height, 1.0f);
@@ -46,6 +46,7 @@ int main() {
         dim3(8, 8), // 64线程
         dim3(16, 16), // 256线程 对称
         dim3(32, 8), // 256线程 非对称
+        dim3(32, 16), // 512线程 非对称
         dim3(32, 32), // 1024线程
     };
 
